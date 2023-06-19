@@ -1,15 +1,13 @@
 name: Release
+
+permissions:
+  contents: write
 on:
-  workflow_dispatch:
   push:
-    branches:
-      - main
-      - master
-    paths:
-      - '**/*.tpl'
-      - '**/*.py'
-      - '**/*.tf'
-      - '.github/workflows/release.yml'
+    tags:
+      - "[0-9]+.[0-9]+.[0-9]+"
+  workflow_dispatch:
+
 jobs:
   release:
     name: Release
