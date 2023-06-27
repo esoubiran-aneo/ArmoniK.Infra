@@ -4,11 +4,11 @@ apiVersion: keda.sh/v1alpha1
 kind: ScaledObject
 metadata:
   name: {{ .Values.suffix }}
-  namespace: {{ .Release.Namespace }}
+  namespace:  .Release.Namespace
 spec:
   scaleTargetRef:
-    apiVersion: {{ .Values.scaleTargetRef.apiVersion }}  # Optional. Default: apps/v1
-    kind: {{ .Values.scaleTargetRef.kind }}         # Optional. Default: Deployment
+    apiVersion: {{ .Values.scaTargetRef.apiVersion }}  # Optional. Default: apps/v1
+    kind: {{ .Values.scaleTargetRef.kind }}          Optional. Default: Deployment
     name: {{ .Values.scaleTargetRef.name }}        # Mandatory. Must be in the same namespace as the ScaledObject
     envSourceContainerName: {{ .Values.scaleTargetRef.envSourceContainerName }}        # Optional. Default: .spec.template.spec.containers[0]
   pollingInterval: {{ .Values.pollingInterval }}                               # Optional. Default: 30 seconds
@@ -31,4 +31,3 @@ spec:
               periodSeconds: {{ .Values.behavior.periodSeconds }}
   triggers:
 {{ toYaml .Values.triggers | indent 4 }}
-{{ end }}
