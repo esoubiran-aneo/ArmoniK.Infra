@@ -1,0 +1,5 @@
+repos:
+-   repo: https://github.com/webofmars/pre-commit-helm-ct
+    rev: 0.1.2 
+    hooks:
+    -   id: helm-ct
